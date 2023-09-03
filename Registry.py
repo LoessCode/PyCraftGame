@@ -1,8 +1,9 @@
 import json
 import pickle
+import pygame
 #
-global Tiles, Items, Entities, Save
-Tiles = {}; Items = {}; Entities = {}; Save = []
+global Tiles, Items, Entities, Save, Textures
+Tiles = {}; Items = {}; Entities = {}; Save = []; Textures = {}
 
 class Item():
     def __init__(self, name, item, tex):
@@ -14,7 +15,7 @@ class Tile():
     def __init__(self, name, tile, tex):
         self.name = name
         self.Tile = tile
-        self.tex = tex 
+        self.tex = tex
 
 class Player():
     def __init__(self, player, tex):
@@ -33,7 +34,8 @@ def unpackTile():
             FTile = TileList[TileKey]
 
             tile = json.load(open(str(FTile["path"]), "r"))
-
+            
+            Textures[FTile["tex"]] = pygame.image.load(FTile["tex"])
             Tiles[TileKey] = Tile(FTile["name"], tile, FTile["tex"])
 
 def unpackItem():
@@ -45,7 +47,8 @@ def unpackItem():
 
             item = json.load(open(str(FItem["path"]), "r"))
 
-            Items[ItemKey] = Item(FItem["name", item, FItem["tex"]])
+            Textures[FItem["tex"]] = pygame.image.load(FItem["tex"])
+            Items[ItemKey] = Item(FItem["name"], item, FItem["tex"])
 
 def dumpSavedGame(Plr, Lvl):
     with open(r"Saves\Save.plrstate", "bw") as fPlr: pickle.dump(Plr, fPlr)

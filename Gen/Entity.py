@@ -12,6 +12,7 @@ class Player():
 
         self.tex = "Data/Assets/Entity/Player.png"
         self.pane = (0, 0)
+        self.moveScope = [0]
 
     def setPos(self, pos, pane = 0):
         self.pos = pos

@@ -40,10 +40,12 @@ def movePlayer(dir, distance=1):
     dir = dirKey[dir]
     
     #Position of next pane and player in said plane
-    nextPane = Player.pane[0] + dir[0], Player.pane[1] + dir[1]
+    nextPane = HitBoxHandler.getNextPanePos(Player.pane, dir)
     nextPanePlayerPos = HitBoxHandler.getNextPanePlayerPos(Player.pos, dir)
 
-    if HitBoxHandler.isTouchingPaneBound(Player.pos, dir):
+    if HitBoxHandler.isTouchingBarrier(Player.pos, dir, Player, Lvl):
+        pass
+    elif HitBoxHandler.isTouchingPaneBound(Player.pos, dir):
         if str(nextPane)[1:-1] in Lvl.World:
             Player.setPos(nextPanePlayerPos, nextPane)
         else:
@@ -51,3 +53,4 @@ def movePlayer(dir, distance=1):
             Player.setPos(nextPanePlayerPos, nextPane)
 
     else: Player.setPos((Player.pos[0] + dir[0]*distance, Player.pos[1] + dir[1]*distance))
+

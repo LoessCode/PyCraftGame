@@ -16,10 +16,17 @@ WorldBuilder.init()
 #Initiates the Render module
 Render.init()
 
-def update():
-    Render.Clear()
-    Render.drawPane(WorldBuilder.Player.pane)
+def update(scope = 9): #Defines how much to update. Optimisation.
+    if scope > 2:
+        Render.Clear()
+        Render.drawPane(WorldBuilder.Player.pane)
+    elif scope == 2:
+        Render.drawPane(WorldBuilder.Player.pane)
+    elif scope == 1:
+        Render.drawPane(WorldBuilder.Player.pane, work='lazy')
+    
 
+update()
 running = True
 while(running):
     for event in pygame.event.get():
@@ -31,8 +38,7 @@ while(running):
 
         #Movement
         elif event.type == pygame.KEYDOWN:
-            InputHandler.keyDown(event.key)
-            update()
+            update(InputHandler.keyDown(event.key))
 
     #input("1")
 

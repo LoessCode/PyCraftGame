@@ -20,7 +20,7 @@
         "tex": "Data/Assets/Tile/Env/Gravel.png"
     },
     "Env.Water":{
-        "path": "Data/Tile/Env/Mud.json",
+        "path": "Data/Tile/Env/Water.json",
         "name": "Water",
         "tex": "Data/Assets/Tile/Env/Water.png"
     }
