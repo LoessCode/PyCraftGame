@@ -23,14 +23,6 @@ def init():
 def GenPane(pos):
     #TileChoice = random.choice((Registry.Tiles["Env.Mud"], Registry.Tiles["Env.Rock"], Registry.Tiles["Env.Gravel"], Registry.Tiles["Env.Sand"]))
     #Tiles = [[World.Tile(TileChoice, (i,j)) for i in range(boardRadius)] for j in range(boardRadius)]
-    """
-    for x in range(9):
-        Tiles.append([])
-        rowI = x
-        for i in range(9):
-            TileChoice = random.choice((Registry.Tiles["Env.Mud"], Registry.Tiles["Env.Rock"], Registry.Tiles["Env.Gravel"], Registry.Tiles["Env.Sand"]))
-            Tiles[rowI].append(World.Tile(TileChoice, (i, rowI)))
-    """
 
     Tiles = GenEngine.genTiles(pos)
     Lvl.AddPane(World.Pane(Tiles, pos))
