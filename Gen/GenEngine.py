@@ -2,7 +2,7 @@ from pynoise.noisemodule import *
 from pynoise.noiseutil import *
 import json
 import Registry
-from Gen.World import World
+from Class.Obj import Tile
 
 perlin = Perlin(octaves=2)
 TerrainKey = json.load(open(r"Data\Tile\TerrainKey.json", "r"))
@@ -34,6 +34,6 @@ def genTiles(pos):
     for i in map:
         Tiles.append(Registry.Tiles[TerrainKey[reduceFloat(i)]])
     for i in range(81):
-        rTiles[i//9].append(World.Tile(Tiles[i], (i-(i//9)*9, (i//9))))
+        rTiles[i//9].append(Tile(Tiles[i], (i-(i//9)*9, (i//9)), pos))
     return rTiles
 

@@ -17,9 +17,9 @@ def isTouchingBarrier(pos, dir, player, lvl):
     else:
         pane = lvl.World[str(player.pane)[1:-1]]
 
-    for tilerow in pane.Tiles:
+    for tilerow in pane.tiles:
         for tile in tilerow:
-            if tile.pos[0] == tilePos[0] and tile.pos[1] == tilePos[1]: tile1 = tile;
+            if tile.localpos[0] == tilePos[0] and tile.localpos[1] == tilePos[1]: tile1 = tile;
 
-    if tile1.Tile.Tile["moveScope"] not in player.moveScope: return True
+    if tile1.RTileInfo.special["moveScope"] not in player.moveScope: return True
     else: return False

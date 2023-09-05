@@ -14,7 +14,7 @@ class Item():
 class Tile():
     def __init__(self, name, tile, tex):
         self.name = name
-        self.Tile = tile
+        self.special = tile
         self.tex = tex
 
 class Player():

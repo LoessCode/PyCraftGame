@@ -1,9 +1,10 @@
 import Gen.WorldBuilder as WorldBuilder
-import Gen.Entity as Entity
+import Class.Entity as Entity
 import pygame
 import Registry
 import Render.Render as Render
 import Utils.InputHandler as InputHandler
+import Utils.VecCG
 
 
 #Registers all items and tiles from local Data
@@ -12,6 +13,7 @@ Registry.loadSavedGame()
 
 #Initiates World-Gen module
 WorldBuilder.init()
+Player = WorldBuilder.Player
 
 #Initiates the Render module
 Render.init()
@@ -19,11 +21,12 @@ Render.init()
 def update(scope = 9): #Defines how much to update. Optimisation.
     if scope > 2:
         Render.Clear()
-        Render.drawPane(WorldBuilder.Player.pane)
+        Render.drawTiles()
     elif scope == 2:
-        Render.drawPane(WorldBuilder.Player.pane)
+        Render.drawTiles()
     elif scope == 1:
-        Render.drawPane(WorldBuilder.Player.pane, work='lazy')
+        Render.drawTiles()
+        #Render.drawPane(WorldBuilder.Player.pane, work='lazy', quality='simple')
     
 
 update()

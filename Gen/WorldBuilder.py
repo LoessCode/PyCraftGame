@@ -1,9 +1,10 @@
-from Gen.World import World
-import Gen.Entity as Entity
+from Gen.World import *
+import Class.Entity as Entity
 import Gen.GenEngine as GenEngine
 import Utils.HitBoxHandler as HitBoxHandler
 import Registry
 import random
+import Utils.VecCG
 
 boardRadius = 9
 
@@ -32,8 +33,8 @@ def GenPane(pos):
             Tiles[rowI].append(World.Tile(TileChoice, (i, rowI)))
     """
 
-    Tiles = GenEngine.genTiles(pos)
-    Lvl.AddPane(World.Pane(Tiles, pos))
+    tiles = GenEngine.genTiles(pos)
+    Lvl.addPane(Pane(pos, tiles))
 
 def movePlayer(dir, distance=1):
     dirKey = {"w": (0, -1), "a": (-1, 0), "s": (0, 1), "d": (1, 0)}
