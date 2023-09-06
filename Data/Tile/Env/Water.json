@@ -1,4 +1,5 @@
 {
     "type": "L_Env",
-    "moveScope": 1
+    "moveScope": 1,
+    "rotation": [360]
 }

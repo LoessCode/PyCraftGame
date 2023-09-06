@@ -19,8 +19,8 @@ Player = WorldBuilder.Player
 Render.init()
 
 def update(scope = 9): #Defines how much to update. Optimisation.
+    Render.clear()
     if scope > 2:
-        Render.Clear()
         Render.drawTiles()
     elif scope == 2:
         Render.drawTiles()
@@ -42,6 +42,8 @@ while(running):
         #Movement
         elif event.type == pygame.KEYDOWN:
             update(InputHandler.keyDown(event.key))
+
+            if event.key == pygame.K_0: print([tile.globalpos for tile in WorldBuilder.Lvl.World['-1, 0'].tiles[1]])
 
     #input("1")
 

@@ -13,7 +13,7 @@ class Vector():
         return (x, y)
 
     def sum(pos1, pos2):
-        x, y = pos1[0] + pos2[0], pos1[1], pos2[1]
+        x, y = pos1[0] + pos2[0], pos1[1] + pos2[1]
         return (x, y)
 
     def cMult(pos, const):

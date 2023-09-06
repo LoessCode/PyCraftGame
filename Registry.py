@@ -33,7 +33,7 @@ def unpackTile():
         for TileKey in TileList:
             FTile = TileList[TileKey]
 
-            tile = json.load(open(str(FTile["path"]), "r"))
+            tile = dict(json.load(open(str(FTile["path"]), "r")))
             
             Textures[FTile["tex"]] = pygame.image.load(FTile["tex"])
             Tiles[TileKey] = Tile(FTile["name"], tile, FTile["tex"])

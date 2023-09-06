@@ -4,6 +4,11 @@
         "name": "Mud",
         "tex": "Data/Assets/Tile/Env/Mud.png"
     },
+    "Env.Grass":{
+        "path": "Data/Tile/Env/Mud.json",
+        "name": "Grass",
+        "tex": "Data/Assets/Tile/Env/Grass.png"
+    },
     "Env.Rock":{
         "path": "Data/Tile/Env/Mud.json",
         "name": "Rock",

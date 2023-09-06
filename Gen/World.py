@@ -16,3 +16,11 @@ class World():
         self.World[key] = pane
     def fetchPane(globalpos):
         pass
+
+    def fetchTile(self, globalpos):
+        import Utils.VecCG as VecCG
+
+        tilePane = VecCG.Vector.cDiv(globalpos, 9)
+        tileRelativePos = VecCG.Vector.findRelativePos(globalpos, VecCG.Vector.cMult(tilePane, 9))
+
+        return self.World[str(tilePane)[1:-1]].tiles[tileRelativePos[1]][tileRelativePos[0]]

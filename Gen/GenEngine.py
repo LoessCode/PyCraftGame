@@ -3,6 +3,7 @@ from pynoise.noiseutil import *
 import json
 import Registry
 from Class.Obj import Tile
+import random
 
 perlin = Perlin(octaves=2)
 TerrainKey = json.load(open(r"Data\Tile\TerrainKey.json", "r"))
@@ -35,5 +36,10 @@ def genTiles(pos):
         Tiles.append(Registry.Tiles[TerrainKey[reduceFloat(i)]])
     for i in range(81):
         rTiles[i//9].append(Tile(Tiles[i], (i-(i//9)*9, (i//9)), pos))
+
+    #Random rotation of tiles
+    for tilerow in rTiles:
+        for tile in tilerow:
+            tile.setRotation(random.choice(tile.RTileInfo.special['rotation']))
     return rTiles
 

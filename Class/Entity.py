@@ -1,6 +1,7 @@
-import Utils.VecCG
 
 class Player():
+
+
     def __init__(self):
         self.pos = [4, 4]
 
@@ -17,9 +18,9 @@ class Player():
         self.moveScope = [0]
         self.globalpos = (0, 0)
 
-    def setPos(self, pos, pane = 0):
-        deltaPos = VecCG.Vector.findRelativePos(self.pos, pos)
-        self.globalpos = (self.globalpos[0] + deltaPos[0], self.globalpos[1] + deltaPos[1])
-        print(self.globalpos)
-        self.pos = pos
-        self.pane = (self.pane if pane == 0 else pane)
+    def setPos(self, pos):
+        import Utils.VecCG as VecCG
+
+        self.pane = VecCG.Vector.cDiv(pos, 9)
+        self.globalpos = pos
+        self.pos = VecCG.Vector.findRelativePos(VecCG.Vector.cMult(self.pane, 9), pos)
