@@ -3,6 +3,7 @@ import Gen.WorldBuilder as WorldBuilder
 import Registry
 import Utils.VecCG as VecCG
 import random
+import Render.HUD as HUD
 
 
 global panel
@@ -28,6 +29,7 @@ def drawPlayer(pos, pane):
 
 
 def drawTiles(work='*'):
+    #tileRects = []
     Player = WorldBuilder.Player; Lvl = WorldBuilder.Lvl
     quality = 'simple'; radius = 30
 
@@ -47,10 +49,11 @@ def drawTiles(work='*'):
 
         
         tileRect = pygame.Rect(tilePlayerRelativePos[0]*32 + CENTERCONST[0], tilePlayerRelativePos[1]*32 + CENTERCONST[1], 32, 32)
+        #tileRects.append((tileRect, tile))
 
         if quality == "real":
             panel.blit(tileTex, tileRect)
-
+ 
         elif quality == "simple":
             dist = VecCG.Vector.mod(Player.globalpos, pos) + 1
 
@@ -60,7 +63,7 @@ def drawTiles(work='*'):
             dropFactors = (2, 2)
             maxAlpha = 180
             """
-            fogDist = 18
+            fogDist = 40
             maxRadius = radius*(2**.5)
             dropFactors = (.8, 0.6)
             maxAlpha = 255
@@ -71,14 +74,22 @@ def drawTiles(work='*'):
             tileTex.set_alpha(maxAlpha*lVal(dist))
             tileTex = pygame.transform.rotate(tileTex, tile.rotation)
 
+            if Lvl.sessionVar['mouseSelectedTile'] == pos:
+                tileTex.set_alpha(0)
+
             panel.blit(tileTex, tileRect)
 
-
+    #Lvl.setRenderedTiles(tileRects)
     drawPlayer((0, 0), (0, 0))
-    pygame.display.update()
         
         
-        
+def drawHud():
+    keyDict = WorldBuilder.Lvl.sessionVar['hud']
+    rects = HUD.fetchRects(keyDict)
+    if rects:
+        for rectPairPair in rects:
+            for rectPair in rectPairPair:
+                panel.blit(rectPair[0], rectPair[1])      
     
 
 

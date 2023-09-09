@@ -35,7 +35,7 @@ def unpackTile():
 
             tile = dict(json.load(open(str(FTile["path"]), "r")))
             
-            Textures[FTile["tex"]] = pygame.image.load(FTile["tex"])
+            Textures[FTile["tex"]] = pygame.image.load(FTile["tex"]).convert_alpha()
             Tiles[TileKey] = Tile(FTile["name"], tile, FTile["tex"])
 
 def unpackItem():
@@ -47,7 +47,7 @@ def unpackItem():
 
             item = json.load(open(str(FItem["path"]), "r"))
 
-            Textures[FItem["tex"]] = pygame.image.load(FItem["tex"])
+            Textures[FItem["tex"]] = pygame.image.load(FItem["tex"]).convert_alpha()
             Items[ItemKey] = Item(FItem["name"], item, FItem["tex"])
 
 def dumpSavedGame(Plr, Lvl):

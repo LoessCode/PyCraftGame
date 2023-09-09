@@ -16,22 +16,21 @@ WorldBuilder.init()
 Player = WorldBuilder.Player
 
 #Initiates the Render module
-Render.init()
+Render.init() 
 
-def update(scope = 9): #Defines how much to update. Optimisation.
+def update():
     Render.clear()
-    if scope > 2:
-        Render.drawTiles()
-    elif scope == 2:
-        Render.drawTiles()
-    elif scope == 1:
-        Render.drawTiles()
-        #Render.drawPane(WorldBuilder.Player.pane, work='lazy', quality='simple')
-    
+    Render.drawTiles()
+    Render.drawHud()
 
-update()
+    pygame.display.update()
+
 running = True
+update()
+
+CLOCK = pygame.time.Clock()
 while(running):
+
     for event in pygame.event.get():
         #Quit
         if event.type == pygame.QUIT:
@@ -41,10 +40,17 @@ while(running):
 
         #Movement
         elif event.type == pygame.KEYDOWN:
-            update(InputHandler.keyDown(event.key))
+            tval = InputHandler.keyDown(event.key)
+            if tval != 'ignore':
+                update()
 
-            if event.key == pygame.K_0: print([tile.globalpos for tile in WorldBuilder.Lvl.World['-1, 0'].tiles[1]])
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            InputHandler.mouseDown(pygame.mouse.get_pos(), WorldBuilder.Lvl.renderedTiles)
+            update()
+ 
+    WorldBuilder.Lvl.updateSessionVar('fps', CLOCK.get_fps(), mode='tuple')
+    dt = CLOCK.tick(60)
+    #update() Drops frames to 9fps
 
-    #input("1")
+        
 
-    #pygame.display.update()
